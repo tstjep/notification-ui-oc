@@ -21,4 +21,4 @@ spec:
             - containerPort: 80
           env:
             - name: BACKEND_BASE_URL
-              value: "http://104.199.66.38"
+              value: "<insert backend url>"
