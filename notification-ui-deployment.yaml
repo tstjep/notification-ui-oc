@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-ui-deployment
+  labels:
+    app: notification-ui
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notification-ui
+  template:
+    metadata:
+      labels:
+        app: notification-ui
+    spec:
+      containers:
+        - name: notification-ui
+          image: mathiskretz/notification-ui
+          ports:
+            - containerPort: 80
+          env:
+            - name: BACKEND_BASE_URL
+              value: "http://104.199.66.38"
+          command: /bin/bash -c "envsubst < /etc/nginx/nginx.conf.tpl> /etc/nginx/nginx.conf && exec nginx -g 'daemon off;'"
