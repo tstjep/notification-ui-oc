@@ -1,23 +1,22 @@
-import { connect } from 'react-redux';
-import Header from './header.jsx';
+import { connect } from "react-redux";
+import Header from "./header.jsx";
 
-const getVisibleNotifications = (notifications) => (notifications ? notifications.filter((n) => n.visible) : undefined);
+const getVisibleNotifications = notifications =>
+  notifications ? notifications.filter(n => n.visible) : undefined;
 
-const mapStateToProps = (state) => {
-    return {
-        notifications: state.notifications.notifications
-    }
+const mapStateToProps = state => {
+  return {
+    notifications: state.notifications.notifications
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
+const mapDispatchToProps = dispatch => {
+  return {};
 };
 
 const HeaderContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Header);
 
 export default HeaderContainer;
