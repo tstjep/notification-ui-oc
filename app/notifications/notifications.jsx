@@ -8,29 +8,17 @@ export class Notifications extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.props.fetchBackendUrl();
-  }
-
   render() {
-    if (this.props.backendBaseUrl) {
-      return (
-        <div>
-          <NotificationList
-            backendBaseUrl={this.props.backendBaseUrl}
-            fetchNotifications={this.props.fetchNotifications}
-            notifications={this.props.notifications}
-            onDismiss={this.props.dismissNotification}
-          />
-          <NotificationForm
-            backendBaseUrl={this.props.backendBaseUrl}
-            addNotification={this.props.addNotification}
-          />
-        </div>
-      );
-    } else {
-      return <div />;
-    }
+    return (
+      <div>
+        <NotificationList
+          fetchNotifications={this.props.fetchNotifications}
+          notifications={this.props.notifications}
+          onDismiss={this.props.dismissNotification}
+        />
+        <NotificationForm addNotification={this.props.addNotification} />
+      </div>
+    );
   }
 }
 

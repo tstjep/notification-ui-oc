@@ -19,6 +19,3 @@ spec:
           image: mathiskretz/notification-ui
           ports:
             - containerPort: 80
-          env:
-            - name: BACKEND_BASE_URL
-              value: "<insert backend url>"

@@ -3,7 +3,6 @@ import Notifications from "./notifications.jsx";
 import {
   createNotification,
   dismissNotification,
-  fetchBackendUrl,
   fetchNotifications
 } from "./notificationActions.jsx";
 
@@ -13,28 +12,24 @@ const getVisibleNotifications = notifications =>
 const mapStateToProps = state => {
   return {
     notifications: state.notifications.notifications,
-    echoEnabled: state.notifications.echoFeature,
-    backendBaseUrl: state.notifications.backendBaseUrl
+    echoEnabled: state.notifications.echoFeature
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    dismissNotification: (backendBaseUrl, notification) => {
-      dispatch(dismissNotification(backendBaseUrl, notification)).then(() =>
-        dispatch(fetchNotifications(backendBaseUrl))
+    dismissNotification: notification => {
+      dispatch(dismissNotification(notification)).then(() =>
+        dispatch(fetchNotifications())
       );
     },
-    addNotification: (backendBaseUrl, text) => {
-      dispatch(createNotification(backendBaseUrl, text)).then(() =>
-        dispatch(fetchNotifications(backendBaseUrl))
+    addNotification: text => {
+      dispatch(createNotification(text)).then(() =>
+        dispatch(fetchNotifications())
       );
     },
-    fetchBackendUrl: () => {
-      dispatch(fetchBackendUrl());
-    },
-    fetchNotifications: backendBaseUrl => {
-      dispatch(fetchNotifications(backendBaseUrl));
+    fetchNotifications: () => {
+      dispatch(fetchNotifications());
     }
   };
 };

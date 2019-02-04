@@ -4,16 +4,11 @@ import "whatwg-fetch";
  * action types
  */
 
-export const RECEIVE_BACKEND_URL = "RECEIVE_BACKEND_URL";
 export const RECEIVE_NOTIFICATIONS = "RECEIVE_NOTIFICATIONS";
 
 /*
  * action creators
  */
-
-function receiveBackendUrl(data) {
-  return { type: RECEIVE_BACKEND_URL, data };
-}
 
 function receiveNotifications(data) {
   return { type: RECEIVE_NOTIFICATIONS, data };
@@ -22,27 +17,18 @@ function receiveNotifications(data) {
 /*
  * thunks
  */
-export function fetchBackendUrl() {
+export function fetchNotifications() {
   return (dispatch, getState) => {
-    const url = "/config/conf.json";
-    fetch(url)
-      .then(response => response.json())
-      .then(data => dispatch(receiveBackendUrl(data)));
-  };
-}
-
-export function fetchNotifications(backendBaseUrl) {
-  return (dispatch, getState) => {
-    const url = backendBaseUrl + "/notification";
+    const url = "/api/notification";
     fetch(url)
       .then(response => response.json())
       .then(data => dispatch(receiveNotifications(data)));
   };
 }
 
-export function createNotification(backendBaseUrl, notificationText) {
+export function createNotification(notificationText) {
   return (dispatch, getState) => {
-    const url = backendBaseUrl + "/notification";
+    const url = "/api/notification";
     const opts = {
       method: "POST",
       headers: {
@@ -56,9 +42,9 @@ export function createNotification(backendBaseUrl, notificationText) {
   };
 }
 
-export function dismissNotification(backendBaseUrl, notification) {
+export function dismissNotification(notification) {
   return (dispatch, getState) => {
-    const url = backendBaseUrl + "/notification/" + notification._id;
+    const url = "/api/notification/" + notification._id;
     const opts = {
       method: "DELETE"
     };

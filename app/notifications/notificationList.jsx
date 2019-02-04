@@ -20,7 +20,6 @@ export class NotificationList extends React.Component {
         <List>
           {this.props.notifications.map(notification => (
             <NotificationElement
-              backendBaseUrl={this.props.backendBaseUrl}
               onDismiss={this.props.onDismiss}
               key={notification.id}
               notification={notification}
@@ -32,7 +31,7 @@ export class NotificationList extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchNotifications(this.props.backendBaseUrl);
+    this.props.fetchNotifications();
   }
 }
 
