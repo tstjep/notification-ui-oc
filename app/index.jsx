@@ -10,6 +10,7 @@ import HeaderContainer from "./header/headerContainer.jsx";
 import NotificationsContainer from "./notifications/notificationsContainer.jsx";
 import { routerMiddleware, syncHistoryWithStore } from "react-router-redux";
 import reducer from "./reducer.jsx";
+import thunk from "redux-thunk";
 
 injectTapEventPlugin();
 
@@ -17,7 +18,7 @@ const routerMiddlewareBrowserHistory = routerMiddleware(browserHistory);
 
 let store = createStore(
   reducer,
-  applyMiddleware(routerMiddlewareBrowserHistory)
+  applyMiddleware(routerMiddlewareBrowserHistory, thunk)
 );
 
 const history = syncHistoryWithStore(browserHistory, store);
