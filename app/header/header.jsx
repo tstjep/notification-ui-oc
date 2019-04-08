@@ -6,7 +6,7 @@ import NotificationsIcon from "material-ui/svg-icons/social/notifications";
 const Header = ({ children, notifications }) => (
   <div>
     <AppBar
-      title="Hello world"
+      title="Notifications"
       iconElementRight={
         <Badge badgeContent={notifications.length} secondary={true}>
           <NotificationsIcon />
